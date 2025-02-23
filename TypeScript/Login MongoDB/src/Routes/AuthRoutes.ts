@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import LoginController from "../Controller/LoginController.ts";
+import UserController from "../Controller/UserController.ts";
 
 interface LoginRequest {
   name: string;
@@ -28,7 +28,7 @@ export default async function Auth(app: FastifyInstance) {
       const { name, email, password } = request.body as LoginRequest;
       if (!name || !email || !password) return reply.redirect("/login");
 
-      new LoginController(name, email, password, 2);
+      new UserController(name, email, password, 2);
     }
   );
 

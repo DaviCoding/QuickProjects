@@ -1,3 +1,4 @@
+import db from "../Database/connect.ts";
 export default class LoginController {
   name: string;
   email: string;
