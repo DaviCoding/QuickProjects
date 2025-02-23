@@ -1,4 +1,21 @@
-import db from "../Database/connect.ts";
+import { errorMonitor } from "node:stream";
+import LoginModels from "../Models/LoginModels.ts";
+import bcrypt from "bcrypt";
+
+function Encrypt(password: string): void {
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(password, salt, function (err, hash) {
+      if (err)
+        throw new Error(
+          `Ocorreu um erro inesperado na criptografia, erro: ${console.table(
+            err
+          )}`
+        );
+      return hash;
+    });
+  });
+}
+
 export default class LoginController {
   name: string;
   email: string;
@@ -8,6 +25,7 @@ export default class LoginController {
     this.email = email;
     this.password = password;
 
+    if (!name || !email || !password) return;
     switch (status) {
       case 1:
         this.CreateAccount();
@@ -26,5 +44,14 @@ export default class LoginController {
     return console.log("não está pronto o cadastro.");
   }
 
-  private LoginAccount() {}
+  private LoginAccount() {
+    LoginModels.create({
+      name: this.name,
+      password: Encrypt(this.password),
+    })
+      .then()
+      .catch((err) => {
+        throw new Error(`Erro ao criar um usuário, erro: ${err}`);
+      });
+  }
 }
