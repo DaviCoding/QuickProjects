@@ -29,6 +29,7 @@ export default async function Auth(app: FastifyInstance) {
       if (!name || !email || !password) return reply.redirect("/login");
 
       new UserController(name, email, password, 2);
+      reply.redirect("/profile");
     }
   );
 
