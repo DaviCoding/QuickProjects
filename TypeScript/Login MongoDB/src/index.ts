@@ -7,18 +7,9 @@ import path from "path";
 import UseRoutes from "./Routes/UserRoutes.ts";
 import AuthRoutes from "./Routes/AuthRoutes.ts";
 import fastifyFormbody from "@fastify/formbody";
-import db from "./Database/connect.ts";
+import connectDB from "./Database/connect.ts";
+import chalk from "chalk";
 dotenv.config();
-
-import bcrypt from "bcrypt";
-
-async function Encrypt(password: string): Promise<string> {
-  let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(password, salt);
-
-  return hash;
-}
-console.log(Encrypt("1234"));
 
 const app = Fastify();
 
@@ -40,17 +31,13 @@ app.register(AuthRoutes);
 
 (async () => {
   try {
-    await db.connect();
-    await db.db("admin").command({ ping: 1 });
+    await connectDB();
+    app.listen({ port: Number(process.env.PORT) });
     console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
+      "Link server:",
+      chalk.underline(chalk.green(`http://127.0.0.1:${process.env.PORT}`))
     );
-    app.listen({ port: Number(process.env.PORT) }, () => {
-      console.log(
-        `Server is running: http://localhost:${Number(process.env.PORT)}`
-      );
-    });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    throw new Error(`Erro: ${error}`);
   }
 })();

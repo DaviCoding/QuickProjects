@@ -1,13 +1,16 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
+import chalk from "chalk";
 dotenv.config();
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(`${process.env.uri}`, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+
+const client = async () => {
+  try {
+    await mongoose.connect(`${process.env.uri}`);
+    console.log(chalk.cyan("MongoDB"));
+  } catch (error) {
+    console.error(chalk.red("Erro ao conectar ao MongoDB", error));
+    process.exit(1);
+  }
+};
 
 export default client;

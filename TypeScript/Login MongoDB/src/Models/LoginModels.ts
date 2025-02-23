@@ -1,5 +1,10 @@
-import client from "../Database/connect.ts";
-const db = client.db();
-const usersCollection = db.collection("Users");
+import mongoose from "mongoose";
 
-export default usersCollection;
+export default mongoose.model(
+  "Users",
+  new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+  })
+);

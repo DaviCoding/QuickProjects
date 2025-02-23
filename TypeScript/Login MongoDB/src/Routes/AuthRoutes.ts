@@ -28,8 +28,15 @@ export default async function Auth(app: FastifyInstance) {
       const { name, email, password } = request.body as LoginRequest;
       if (!name || !email || !password) return reply.redirect("/login");
 
-      new UserController(name, email, password, 2);
-      reply.redirect("/profile");
+      const user = await new UserController(
+        name,
+        email,
+        password
+      ).LoginAccount();
+
+      reply.status(200).send({ user });
+
+      // reply.redirect("/profile");
     }
   );
 
