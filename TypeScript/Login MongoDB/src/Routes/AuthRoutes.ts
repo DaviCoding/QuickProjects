@@ -28,15 +28,38 @@ export default async function Auth(app: FastifyInstance) {
       const { name, email, password } = request.body as LoginRequest;
       if (!name || !email || !password) return reply.redirect("/login");
 
-      const user = await new UserController(
-        name,
-        email,
-        password
-      ).LoginAccount();
+      let user = await new UserController(name, email, password).LoginAccount();
+      user.length == 0 ? reply.redirect("/login") : (user = user);
 
       reply.status(200).send({ user });
 
-      // reply.redirect("/profile");
+      reply.redirect("/profile");
+    }
+  );
+
+  app.post(
+    "/authenticate/register",
+    {
+      schema: {
+        body: {
+          type: "object",
+          properties: {
+            name: { type: "string", minLength: 1 },
+            email: { type: "string", format: "email", minLength: 1 },
+            password: { type: "string", minLength: 1 },
+          },
+          required: ["name", "email", "password"],
+          additionalProperties: false,
+        },
+      },
+    },
+    async (request, reply) => {
+      const { name, email, password } = request.body as LoginRequest;
+      if (!name || !email || !password) return reply.redirect("/login");
+
+      await new UserController(name, email, password).CreateAccount();
+
+      reply.status(200).redirect("/profile");
     }
   );
 

@@ -1,13 +1,6 @@
 import chalk from "chalk";
 import LoginModels from "../Models/LoginModels.ts";
-import bcrypt from "bcrypt";
-
-async function Encrypt(password: string): Promise<string> {
-  let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(password, salt);
-
-  return hash;
-}
+import EncryptController from "./EncryptionController.ts";
 
 export default class LoginController {
   name: string;
@@ -22,9 +15,9 @@ export default class LoginController {
   async CreateAccount() {
     try {
       return await new LoginModels({
-        name: "Davi Alves",
-        email: "davialves.xy@gmail.com",
-        password: "1234",
+        name: this.name,
+        email: this.email,
+        password: await new EncryptController(this.password).Encrypt(),
       }).save();
     } catch (error) {
       console.log(chalk.red(`Erro ao criar o usuário, erro: ${error}`));
@@ -32,6 +25,6 @@ export default class LoginController {
   }
 
   async LoginAccount() {
-    return await LoginModels.find();
+    return await LoginModels.find({ name: this.name, email: this.email });
   }
 }
