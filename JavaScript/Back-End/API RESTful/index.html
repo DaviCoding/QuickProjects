@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Endpoints</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-stone-300 text-white flex flex-col items-center justify-center min-h-screen p-4"
+  >
+    <div class="w-full max-w-3xl bg-stone-800 p-6 rounded-3xl shadow-lg">
+      <h1 class="text-2xl font-bold text-center mb-4">
+        Endpoints da API de usuários
+      </h1>
+      <table class="w-full border-collapse border border-gray-700">
+        <thead>
+          <tr class="bg-stone-700">
+            <th class="border border-stone-600 p-2 text-left">Método</th>
+            <th class="border border-stone-600 p-2 text-left">Rota</th>
+            <th class="border border-stone-600 p-2 text-left">Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-stone-700">
+            <td class="border border-stone-600 p-2 text-green-400 font-bold">
+              GET
+            </td>
+            <td class="border border-stone-600 p-2">/api/v1/users</td>
+            <td class="border border-stone-600 p-2">Lista todos os usuários</td>
+          </tr>
+          <tr class="hover:bg-stone-700">
+            <td class="border border-stone-600 p-2 text-blue-400 font-bold">
+              POST
+            </td>
+            <td class="border border-stone-600 p-2">/api/v1/users</td>
+            <td class="border border-stone-600 p-2">Cria um novo usuário</td>
+          </tr>
+          <tr class="hover:bg-stone-700">
+            <td class="border border-stone-600 p-2 text-yellow-400 font-bold">
+              PUT
+            </td>
+            <td class="border border-stone-600 p-2">/api/v1/users/:id</td>
+            <td class="border border-gray-600 p-2">Atualiza um usuário</td>
+          </tr>
+          <tr class="hover:bg-stone-700">
+            <td class="border border-stone-600 p-2 text-red-400 font-bold">
+              DELETE
+            </td>
+            <td class="border border-stone-600 p-2">/api/v1/users/:id</td>
+            <td class="border border-stone-600 p-2">Remove um usuário</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="p-5 text-stone-400">Use Postman/Insomnia to make a call</h3>
+  </body>
+</html>
