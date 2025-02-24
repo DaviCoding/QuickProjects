@@ -40,3 +40,15 @@ yarn add package.json
 ```
 yarn start:windows
 ```
+
+### TypeScript/Tier List
+![image](https://github.com/user-attachments/assets/4513b1e6-ab6d-4fc1-b1db-ea27d8ef5e31)
+
+```
+npm i
+```
+
+```
+npm run dev
+```
+
