@@ -1,7 +1,7 @@
 # QuickProjects
  Simple codes in different languages.
 
-### JavaScript/Back-End/API RESTfull
+### JavaScript/Back-End/API RESTful
 ![image](https://github.com/user-attachments/assets/ed96504c-bce8-4bd4-8258-5a2b0e7af306)
 
 ```
@@ -40,3 +40,15 @@ yarn add package.json
 ```
 yarn start:windows
 ```
+
+### TypeScript/React/Tier List
+![image](https://github.com/user-attachments/assets/4513b1e6-ab6d-4fc1-b1db-ea27d8ef5e31)
+
+```
+npm i
+```
+
+```
+npm run dev
+```
+
