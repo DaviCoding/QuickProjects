@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Monomakh&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --font-Monomakh: "Monomakh", sans-serif; 
+    --font-Nunito: "Nunito", sans-serif; 
+  }
