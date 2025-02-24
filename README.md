@@ -1,7 +1,7 @@
 # QuickProjects
  Simple codes in different languages.
 
-### JavaScript/Back-End/API RESTfull
+### JavaScript/Back-End/API RESTful
 ![image](https://github.com/user-attachments/assets/ed96504c-bce8-4bd4-8258-5a2b0e7af306)
 
 ```
