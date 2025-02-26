@@ -1,4 +1,3 @@
-import Box from "./components/box";
 import { FaLink } from "react-icons/fa";
 import { Component } from "react";
 
@@ -8,32 +7,41 @@ function randomId() {
 
 export default class App extends Component {
   state = {
-    position: {
-      1: {
+    blocks: [
+      {
         text: "S",
-        color: "white",
-        bg: "bg-red-500",
+        position: 1,
+        background: "bg-red-500",
+        textColor: "text-white",
       },
-      2: {
+      {
         text: "A",
-        color: "black",
-        bg: "bg-orange-400",
+        position: 2,
+        background: "bg-orange-500",
+        textColor: "text-black",
       },
-      3: {
+      {
         text: "B",
-        color: "black",
-        bg: "bg-yellow-300",
+        position: 3,
+        background: "bg-yellow-500",
+        textColor: "text-black",
       },
-      4: {
+      {
         text: "C",
-        color: "white",
-        bg: "bg-green-500",
+        position: 4,
+        background: "bg-green-500",
+        textColor: "text-white",
       },
-    },
+    ],
     tier: [
       {
-        img: "https://zaffari.vtexassets.com/arquivos/ids/264064/1104354-00.jpg?v=638684899394070000",
-        position: 1,
+        img: "https://ibassets.com.br/ib.item.image.large/l-7ef5ff63c7fb4dd289ea2ff38fc08833.jpeg",
+        position: 3,
+        id: randomId(),
+      },
+      {
+        img: "https://www.rickdoces.com.br/estatico/rickdoces/images/produto/f5fdf19be35a458f36bfff35b4bfef52.png",
+        position: 4,
         id: randomId(),
       },
       {
@@ -42,19 +50,14 @@ export default class App extends Component {
         id: randomId(),
       },
       {
-        img: "https://zaffari.vtexassets.com/arquivos/ids/264064/1104354-00.jpg?v=638684899394070000",
-        position: 3,
-        id: randomId(),
-      },
-      {
-        img: "https://cdn.hashnode.com/res/hashnode/image/upload/v1672985941583/fd4917de-77b9-4493-a940-a4446f8943c0.png?auto=compress,format&format=webp",
-        position: 4,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfIQDtFRjHJ4ISVe57fbma4_JtjDl-i0S0Lg&s",
+        position: 1,
         id: randomId(),
       },
     ],
   };
   render() {
-    const { tier, position } = this.state;
+    const { tier, blocks } = this.state;
     return (
       <>
         <div className="bg-stone-300 h-screen flex items-center justify-center gap-15 p-15 font-bold">
@@ -62,17 +65,26 @@ export default class App extends Component {
             <h1 className="font-Monomakh text-2xl text-neutral-600">
               Tier List
             </h1>
-            <div className="w-full h-full rounded-3xl bg-stone-900 shadow-2xl p-2">
-              <div className="flex flex-col justify-center h-full">
-                {tier.map((element) => (
-                  <Box
-                    bg={position[element.position].bg}
-                    name={position[element.position].text}
-                    color={position[element.position].color}
-                    list={element}
-                  />
-                ))}
-              </div>
+            <div className="w-full h-full rounded-3xl bg-stone-900 shadow-2xl p-4 flex flex-col justify-evenly gap-4">
+              {blocks.map((block) => (
+                <div className={`w-full h-1/4 flex gap-4`}>
+                  <div
+                    className={`w-1/7 h-full rounded-3xl flex items-center justify-center ${block.background} ${block.textColor}`}
+                  >
+                    {block.text}
+                  </div>
+                  <div className="w-1/7 h-full flex gap-4">
+                    {tier.map((list) =>
+                      block.position == list.position ? (
+                        <img
+                          src={list.img}
+                          className="rounded-3xl w-full  bg-center"
+                        />
+                      ) : null
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
           <div className="flex flex-col w-1/4 h-full">
