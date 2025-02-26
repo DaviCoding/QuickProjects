@@ -42,7 +42,8 @@ yarn start:windows
 ```
 
 ### TypeScript/React/Tier List
-![image](https://github.com/user-attachments/assets/4513b1e6-ab6d-4fc1-b1db-ea27d8ef5e31)
+![image](https://github.com/user-attachments/assets/bfdbfa98-0516-43c3-94f5-7288fa0f74a1)
+
 
 ```
 npm i
