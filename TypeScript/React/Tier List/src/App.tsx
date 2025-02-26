@@ -1,4 +1,5 @@
-import { FaLink } from "react-icons/fa";
+import { PiLinkBold } from "react-icons/pi";
+import { IoClose } from "react-icons/io5";
 import { Component } from "react";
 
 function randomId() {
@@ -56,6 +57,15 @@ export default class App extends Component {
       },
     ],
   };
+  id: number | undefined;
+
+  hoverElement(id: number) {
+    this.id = id;
+
+    document.getElementById(`${id}`)?.classList.toggle("opacity-65");
+    document.getElementById(`${id}`)?.classList.toggle("opacity-1");
+  }
+
   render() {
     const { tier, blocks } = this.state;
     return (
@@ -67,7 +77,7 @@ export default class App extends Component {
             </h1>
             <div className="w-full h-full rounded-3xl bg-stone-900 shadow-2xl p-4 flex flex-col justify-evenly gap-4">
               {blocks.map((block) => (
-                <div className={`w-full h-1/4 flex gap-4`}>
+                <div key={block.position} className={`w-full h-1/4 flex gap-4`}>
                   <div
                     className={`w-1/7 h-full rounded-3xl flex items-center justify-center ${block.background} ${block.textColor}`}
                   >
@@ -76,10 +86,20 @@ export default class App extends Component {
                   <div className="w-1/7 h-full flex gap-4">
                     {tier.map((list) =>
                       block.position == list.position ? (
-                        <img
-                          src={list.img}
-                          className="rounded-3xl w-full  bg-center"
-                        />
+                        <div key={list.id} className="relative">
+                          <img
+                            src={list.img}
+                            className="rounded-3xl w-full bg-center"
+                          />
+                          <div
+                            className="absolute top-0 left-0 rounded-3xl w-full h-full bg-black opacity-1 z-10 flex items-center justify-center cursor-pointer"
+                            id={`${list.id}`}
+                            onMouseEnter={() => this.hoverElement(list.id)}
+                            onMouseLeave={() => this.hoverElement(list.id)}
+                          >
+                            <IoClose className="text-red-700 text-5xl" />
+                          </div>
+                        </div>
                       ) : null
                     )}
                   </div>
@@ -110,7 +130,7 @@ export default class App extends Component {
               href="https://github.com/DaviCoding"
               className="flex items-center gap-2"
             >
-              GitHub <FaLink />
+              GitHub <PiLinkBold />
             </a>
           </footer>
         </div>
