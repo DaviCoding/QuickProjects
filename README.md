@@ -72,3 +72,8 @@ npm run dev
 ### 💡 Contribuição
 Sinta-se à vontade para contribuir com melhorias e novos projetos. Faça um fork do repositório, crie uma branch e envie um pull request! 🚀
 
+---
+
+Se gostar de algo daqui, fique à vontade para usar! 😊
+
+****
